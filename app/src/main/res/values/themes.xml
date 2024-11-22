@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.VegeCare" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:actionOverflowButtonStyle">@drawable/leaf</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/vgn_muda</item>
+        <item name="colorPrimaryVariant">@color/vgn_muda</item>
+        <item name="colorOnPrimary">@color/hizbul_waton</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/vgn_tua</item>
+        <item name="colorSecondaryVariant">@color/vgn_tua</item>
+        <item name="colorOnSecondary">@color/black_rml</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.App.PopupActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/hizbul_waton</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Fab.Square" parent="">
+        <item name="cornerSize">5dp</item> <!-- Membuat sudut menjadi siku -->
+    </style>
+</resources>
