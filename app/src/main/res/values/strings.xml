@@ -4,4 +4,68 @@
     <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
     <string name="point_sayur">999</string>
+
+    <!--    Main Menu-->
+    <!--    Isi di sini-->
+
+    <!--    Notification Menu-->
+    <!--    Isi di sini-->
+
+    <!--    Menu Profile-->
+    <string name="title_achievement">Pencapaian</string>
+    <string name="uncompleted_achievement">Pencapaian Belum Terselesaikan</string>
+    <string name="completed_achievement">Pencapaian Terselesaikan</string>
+    <string name="num_completed">15</string>
+    <string name="num_uncompleted">5</string>
+    <string name="title_username_profile">Surya Hanz</string>
+    <string name="title_username_degree">Raja Sayur</string>
+
+    <!--    Kanggo nama achievement-->
+    <string-array name="achievement_names">
+        <item>Tanaman Pemula</item>
+        <item>Ahli Tumbuhan</item>
+        <item>Pecinta Hijau</item>
+        <item>Rutin Terus!</item>
+        <item>Waktu Emas</item>
+        <item>Anti Panik</item>
+        <item>Pelindung Tanaman</item>
+        <item>Cekatan!</item>
+        <item>Detektif Tumbuhan</item>
+        <item>Pahlawan Hijau</item>
+        <item>Dokter Tanaman</item>
+        <item>Sembuhkan dengan Cepat</item>
+        <item>Kolektor Daun</item>
+        <item>Variasi Hijau</item>
+        <item>Pembaca Cuaca</item>
+        <item>Super Aktif</item>
+        <item>Berbagi Hijau</item>
+        <item>Komunitas Peduli</item>
+        <item>Penyelamat Terakhir</item>
+        <item>Master VegeCare</item>
+    </string-array>
+
+    <!--Kanggo deskripsi achievement e-->
+    <string-array name="achievement_descriptions">
+        <item>Selesaikan 5 quest perawatan rutin pertama.</item>
+        <item>Selesaikan 50 quest perawatan rutin.</item>
+        <item>Rawat tanaman setiap hari selama seminggu penuh.</item>
+        <item>Rawat tanaman setiap hari selama 30 hari berturut-turut.</item>
+        <item>Selesaikan quest perawatan dalam 1 jam setelah pengingat muncul.</item>
+        <item>Tanggapi pengingat cuaca ekstrem 5 kali dengan tindakan tepat.</item>
+        <item>Amankan tanaman dari cuaca buruk 10 kali.</item>
+        <item>Respon pengingat cuaca dalam waktu kurang dari 10 menit.</item>
+        <item>Lakukan 5 deteksi penyakit pertama.</item>
+        <item>Deteksi dan tangani 20 penyakit dengan sukses.</item>
+        <item>Deteksi 50 penyakit menggunakan kamera.</item>
+        <item>Deteksi penyakit dan selesaikan penanganan dalam 1 hari.</item>
+        <item>Tambahkan 5 jenis tanaman baru ke daftar perawatan.</item>
+        <item>Tambahkan 20 jenis tanaman baru ke daftar.</item>
+        <item>Lihat laporan cuaca di aplikasi 10 kali.</item>
+        <item>Gunakan aplikasi setiap hari selama 30 hari.</item>
+        <item>Bagikan aplikasi ke 5 teman.</item>
+        <item>Bantu pengguna lain dengan memberikan tips di forum aplikasi.</item>
+        <item>Selamatkan tanaman dari ancaman penyakit pada hari terakhir batas waktu.</item>
+        <item>Raih semua achievement lainnya.</item>
+    </string-array>
+
 </resources>
