@@ -13,18 +13,27 @@
         android:theme="@style/Theme.VegeCare"
         tools:targetApi="31">
         <activity
+            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:theme="@style/Theme.VegeCare.Splash"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".PointsActivity"
-            android:theme="@style/Theme.App.PopupActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.App.PopupActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 
