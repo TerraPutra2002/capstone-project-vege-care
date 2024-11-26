@@ -20,6 +20,16 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="Theme.VegeCare.Login" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.VegeCare.Register" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="Theme.App.PopupActivity" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/hizbul_waton</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
