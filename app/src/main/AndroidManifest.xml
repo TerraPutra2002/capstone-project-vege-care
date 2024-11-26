@@ -26,9 +26,8 @@
             android:theme="@style/Theme.VegeCare.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".PointsActivity"
@@ -38,11 +37,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
-
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
