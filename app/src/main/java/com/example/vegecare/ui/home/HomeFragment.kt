@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vegecare.R
 import com.example.vegecare.databinding.FragmentHomeBinding
+import com.example.vegecare.ui.home.adapter.WeatherAdapter
+import com.example.vegecare.ui.home.adapter.WeatherItem
 
 class HomeFragment : Fragment() {
 
@@ -31,11 +33,19 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val weatherData = listOf(
+            WeatherItem("Cuaca Senin", "Cerah Berawan dengan suhu rata-rata 27°C"),
+            WeatherItem("Cuaca Selasa", "Hujan Gerimis dengan suhu rata-rata 23°C")
+        )
+
+        val adapter = WeatherAdapter(weatherData)
+        binding.vpWeather.adapter = adapter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
