@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/tv_title_weather"
+        android:id="@+id/textViewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cuaca hari ini"
+        android:text="Lokasi: Tidak tersedia"
         android:textSize="18sp"
-        android:layout_gravity="center"/>
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/imageViewForecast"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/weather_image"
+        android:contentDescription="Ikon cuaca"
+        android:layout_marginBottom="16dp" />
 
     <TextView
-        android:id="@+id/tv_description_weather"
+        android:id="@+id/textViewForecastTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deskripsi Cuaca"
-        android:layout_gravity="center"/>
+        android:text="Suhu: --°C"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textViewForecastDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuaca: --"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textViewForecastTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jam: --"
+        android:textSize="14sp" />
 </LinearLayout>
