@@ -67,5 +67,23 @@
         <item>Selamatkan tanaman dari ancaman penyakit pada hari terakhir batas waktu.</item>
         <item>Raih semua achievement lainnya.</item>
     </string-array>
+    
+    <!--Tambah Tanaman-->
+    <string name="nama_tanaman">Nama Tanaman</string>
+    <string name="jenis_tanaman">Pilih Jenis Tanaman</string>
+    <string-array name="daftar_jenis_tanaman">
+        <item>Cabai</item>
+        <item>Sawi</item>
+        <item>Tomat</item>
+    </string-array>
+    <string name="media_tanam">Pilih Media Tanam</string>
+    <string-array name="daftar_media_tanam">
+        <item>Pot</item>
+        <item>Lahan Luas</item>
+    </string-array>
+    <string name="jumlah">Ketuk untuk menambah jumlah tanaman</string>
+    <string name="tambah">Tambah</string>
+    <string name="batal">Cancel</string>
+    <string name="action_bar">Tambah Tanaman</string>
 
 </resources>
