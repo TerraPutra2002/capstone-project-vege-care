@@ -18,4 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/splashTitle"
+        android:layout_width="262dp"
+        android:layout_height="70dp"
+        android:src="@drawable/vegecare_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/splashImage"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
