@@ -1,5 +1,6 @@
 package com.example.vegecare.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,6 +14,7 @@ import com.example.vegecare.R
 import com.example.vegecare.databinding.FragmentHomeBinding
 import com.example.vegecare.ui.home.adapter.WeatherAdapter
 import com.example.vegecare.ui.home.adapter.WeatherItem
+import com.example.vegecare.ui.home.addplant.AddPlantActivity
 
 class HomeFragment : Fragment() {
 
@@ -46,6 +48,11 @@ class HomeFragment : Fragment() {
 
         val adapter = WeatherAdapter(weatherData)
         binding.vpWeather.adapter = adapter
+
+        binding.fabAddPlant.setOnClickListener {
+            val intent = Intent(requireContext(), AddPlantActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
