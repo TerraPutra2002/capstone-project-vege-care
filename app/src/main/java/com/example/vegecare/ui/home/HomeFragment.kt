@@ -1,82 +1,58 @@
 package com.example.vegecare.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import com.example.vegecare.R
 import com.example.vegecare.databinding.FragmentHomeBinding
 import com.example.vegecare.ui.home.adapter.WeatherAdapter
-import com.example.vegecare.ui.home.data.response.CuacaItemItem
-import com.example.vegecare.ui.home.data.retrofit.ApiConfigWeather
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.vegecare.ui.home.adapter.WeatherItem
+import com.example.vegecare.ui.home.addplant.AddPlantActivity
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
 
-    private var lokasi: String = ""
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        val root: View = binding.root
+
+        return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fetchWeatherData("35.78.22.1004")
-    }
+        val weatherData = listOf(
+            WeatherItem("Cuaca Senin", "Cerah Berawan dengan suhu rata-rata 27°C"),
+            WeatherItem("Cuaca Selasa", "Hujan Gerimis dengan suhu rata-rata 23°C")
+        )
 
-    private fun fetchWeatherData(kodeWilayah: String) {
-        lifecycleScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    ApiConfigWeather.weatherApi.getWeatherForecast(kodeWilayah)
-                }
-
-                if (response.isSuccessful) {
-                    val weatherItems = response.body()?.data?.get(0)?.cuaca?.flatMap { it.orEmpty() }
-                    Log.d("WeatherData", "Weather items: $weatherItems")
-                    if (weatherItems.isNullOrEmpty()) {
-                        showError("Data cuaca tidak tersedia")
-                    } else {
-                        val lokasiResponse = response.body()?.lokasi
-                        lokasi = "${lokasiResponse?.desa}, ${lokasiResponse?.kecamatan}, ${lokasiResponse?.kota}"
-
-                        setupViewPager(weatherItems)
-                    }
-                } else {
-                    showError("Gagal memuat data: ${response.message()}")
-                }
-            } catch (e: Exception) {
-                showError("Terjadi kesalahan: ${e.message}")
-            }
-        }
-    }
-
-    private fun setupViewPager(weatherData: List<CuacaItemItem?>) {
-        val filteredData = weatherData.filterNotNull()
-
-        val adapter = WeatherAdapter(filteredData, lokasi)
+        val adapter = WeatherAdapter(weatherData)
         binding.vpWeather.adapter = adapter
-    }
 
-    private fun showError(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        binding.fabAddPlant.setOnClickListener {
+            val intent = Intent(requireContext(), AddPlantActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
