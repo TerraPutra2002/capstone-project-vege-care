@@ -1,5 +1,6 @@
 package com.example.vegecare.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +21,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
+
+import com.example.vegecare.ui.home.addplant.AddPlantActivity
 
 class HomeFragment : Fragment() {
 
@@ -106,6 +109,11 @@ class HomeFragment : Fragment() {
 
         val adapter = WeatherAdapter(filteredData, lokasi)
         binding.vpWeather.adapter = adapter
+
+        binding.fabAddPlant.setOnClickListener {
+            val intent = Intent(requireContext(), AddPlantActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showError(message: String) {
