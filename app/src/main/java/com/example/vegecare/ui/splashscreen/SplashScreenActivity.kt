@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.vegecare.databinding.ActivitySplashScreenBinding
 import com.example.vegecare.ui.login.LoginActivity
-import com.example.vegecare.MainActivity
-import com.example.vegecare.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -44,17 +42,17 @@ class SplashScreenActivity : AppCompatActivity() {
             interpolator = AccelerateDecelerateInterpolator()
             start()
         }
+        ObjectAnimator.ofFloat(binding.splashTitle, "alpha", 0f, 1f).apply {
+            duration = 2000
+            interpolator = AccelerateDecelerateInterpolator()
+            start()
+        }
     }
 
     private fun navigateToLoginAfterDelay() {
         val splashDuration = 3000L
         binding.root.postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
-
-        val splashDuration = 3000L
-
-        binding.root.postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, splashDuration)
     }
