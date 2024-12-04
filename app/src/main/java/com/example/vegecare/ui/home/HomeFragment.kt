@@ -1,5 +1,6 @@
 package com.example.vegecare.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,10 @@ import com.example.vegecare.ui.home.data.retrofit.ApiConfigWeather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
+
+import com.example.vegecare.ui.home.addplant.AddPlantActivity
 
 class HomeFragment : Fragment() {
 
@@ -37,8 +42,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.ProgressBar.visibility = View.VISIBLE
         fetchWeatherData("35.78.22.1004")
+
     }
 
     private fun fetchWeatherData(kodeWilayah: String) {
@@ -47,6 +53,8 @@ class HomeFragment : Fragment() {
                 val response = withContext(Dispatchers.IO) {
                     ApiConfigWeather.weatherApi.getWeatherForecast(kodeWilayah)
                 }
+
+                binding.ProgressBar.visibility = View.GONE
 
                 if (response.isSuccessful) {
                     val weatherItems = response.body()?.data?.get(0)?.cuaca?.flatMap { it.orEmpty() }
@@ -57,13 +65,41 @@ class HomeFragment : Fragment() {
                         val lokasiResponse = response.body()?.lokasi
                         lokasi = "${lokasiResponse?.desa}, ${lokasiResponse?.kecamatan}, ${lokasiResponse?.kota}"
 
-                        setupViewPager(weatherItems)
+                        // Filter data cuaca berdasarkan waktu
+                        val filteredWeatherItems = filterWeatherData(weatherItems)
+
+                        setupViewPager(filteredWeatherItems)
                     }
                 } else {
                     showError("Gagal memuat data: ${response.message()}")
                 }
             } catch (e: Exception) {
+                binding.ProgressBar.visibility = View.GONE
                 showError("Terjadi kesalahan: ${e.message}")
+            }
+        }
+    }
+
+    private fun filterWeatherData(weatherItems: List<CuacaItemItem?>): List<CuacaItemItem?> {
+        val currentDate = Calendar.getInstance() // Waktu saat ini
+
+        // Menggunakan SimpleDateFormat untuk mengkonversi string waktu menjadi objek Date
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()) // Sesuaikan dengan format waktu yang digunakan
+
+        // Memfilter data cuaca berdasarkan waktu (menghapus data lebih dari 3 jam yang lalu)
+        return weatherItems.filterNotNull().filter { forecast ->
+            try {
+                // Parsing waktu dari data cuaca
+                val forecastTime = dateFormat.parse(forecast.localDatetime)
+
+                // Cek apakah waktu cuaca lebih dari 3 jam yang lalu
+                val timeDifference = currentDate.timeInMillis - (forecastTime?.time ?: 0)
+                val threeHoursInMillis = 3 * 60 * 60 * 1000 // 3 jam dalam milidetik
+
+                // Hanya ambil data yang waktu cuacanya tidak lebih dari 3 jam yang lalu
+                timeDifference <= threeHoursInMillis
+            } catch (e: Exception) {
+                false // Jika terjadi kesalahan parsing waktu, abaikan data ini
             }
         }
     }
@@ -73,6 +109,11 @@ class HomeFragment : Fragment() {
 
         val adapter = WeatherAdapter(filteredData, lokasi)
         binding.vpWeather.adapter = adapter
+
+        binding.fabAddPlant.setOnClickListener {
+            val intent = Intent(requireContext(), AddPlantActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showError(message: String) {
