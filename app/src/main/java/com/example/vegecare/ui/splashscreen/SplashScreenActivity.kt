@@ -42,6 +42,11 @@ class SplashScreenActivity : AppCompatActivity() {
             interpolator = AccelerateDecelerateInterpolator()
             start()
         }
+        ObjectAnimator.ofFloat(binding.splashTitle, "alpha", 0f, 1f).apply {
+            duration = 2000
+            interpolator = AccelerateDecelerateInterpolator()
+            start()
+        }
     }
 
     private fun navigateToLoginAfterDelay() {
