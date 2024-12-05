@@ -5,7 +5,6 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.vegecare.R
 import com.example.vegecare.databinding.ItemWeatherBinding
 import com.example.vegecare.ui.home.data.response.CuacaItemItem
@@ -31,10 +30,14 @@ class WeatherAdapter(
             binding.textViewForecastDesc.text = "Cuaca: ${forecast?.weatherDesc ?: "--"}"
             binding.textViewForecastTime.text = "Jam: ${forecast?.localDatetime ?: "--"}"
 
-            Glide.with(itemView.context)
-                .load(forecast?.image)
-                .placeholder(R.drawable.weather_image)
-                .into(binding.imageViewForecast)
+            val weatherImageResId = when {
+                forecast?.weatherDesc?.contains("hujan", ignoreCase = true) == true -> R.drawable.rain
+                forecast?.weatherDesc?.contains("berawan", ignoreCase = true) == true -> R.drawable.cloudy
+                forecast?.weatherDesc?.contains("cerah", ignoreCase = true) == true -> R.drawable.sun
+                else -> R.drawable.weather_image
+            }
+
+            binding.imageViewForecast.setImageResource(weatherImageResId)
 
             if (isFirstItem) {
                 val currentTime = Calendar.getInstance().time

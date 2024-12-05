@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
                     } else {
                         val lokasiResponse = response.body()?.lokasi
                         lokasi =
-                            "${lokasiResponse?.desa}, ${lokasiResponse?.kecamatan}, ${lokasiResponse?.kota}"
+                            "${lokasiResponse?.desa}, ${lokasiResponse?.kecamatan}, ${lokasiResponse?.kotkab}"
 
                         // Tampilkan notifikasi untuk Hujan Petir
                         val hujanPetirItems =
