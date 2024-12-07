@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.vegecare.databinding.ActivityMainBinding
+import com.example.vegecare.ui.detail.PlantDetailActivity
 import com.example.vegecare.ui.point.PointsActivity
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.point -> {
                 val intent = Intent(this, PointsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.tombol -> {
+                val intent = Intent(this, PlantDetailActivity::class.java)
                 startActivity(intent)
                 true
             }

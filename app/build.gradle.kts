@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -72,4 +73,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
 
     implementation("androidx.core:core:1.12.0")
+
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
 }
