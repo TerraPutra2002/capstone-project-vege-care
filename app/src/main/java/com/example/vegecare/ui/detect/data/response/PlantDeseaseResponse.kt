@@ -4,20 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class PlantDeseaseResponse(
 
-	@field:SerializedName("disease_prediction")
-	val diseasePrediction: DiseasePrediction? = null,
+	@field:SerializedName("prediction")
+	val prediction: Prediction? = null,
 
 	@field:SerializedName("plant_care")
 	val plantCare: PlantCare? = null
-)
-
-data class DiseasePrediction(
-
-	@field:SerializedName("confidence")
-	val confidence: Any? = null,
-
-	@field:SerializedName("class")
-	val jsonMemberClass: String? = null
 )
 
 data class PlantCare(
@@ -28,6 +19,21 @@ data class PlantCare(
 	@field:SerializedName("treatment")
 	val treatment: String? = null,
 
+	@field:SerializedName("general_info")
+	val generalInfo: String? = null,
+
 	@field:SerializedName("prevention")
 	val prevention: String? = null
+)
+
+data class Prediction(
+
+	@field:SerializedName("condition")
+	val condition: String? = null,
+
+	@field:SerializedName("confidence")
+	val confidence: Any? = null,
+
+	@field:SerializedName("plant_name")
+	val plantName: String? = null
 )

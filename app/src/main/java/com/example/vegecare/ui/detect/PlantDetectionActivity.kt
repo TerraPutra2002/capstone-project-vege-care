@@ -107,8 +107,8 @@ class PlantDetectionActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val result = response.body()
                         binding.classs.text =
-                            result?.diseasePrediction?.jsonMemberClass ?: "Tidak diketahui"
-                        binding.confidence.text = result?.diseasePrediction?.confidence.toString()
+                            result?.prediction?.condition ?: "Tidak diketahui"
+                        binding.information.text = result?.plantCare?.generalInfo.toString()
                         binding.generalCare.text = result?.plantCare?.generalCare ?: "-"
                         binding.treatment.text = result?.plantCare?.treatment ?: "-"
                         binding.prevention.text = result?.plantCare?.prevention ?: "-"

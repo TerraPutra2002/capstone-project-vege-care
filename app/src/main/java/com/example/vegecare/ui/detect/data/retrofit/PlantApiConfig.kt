@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 
 object PlantApiConfig {
 
-    private const val BASE_URL = "https://vegecare-api-wxmtgnx3vq-et.a.run.app/"
+    private const val BASE_URL = "https://ml-api-vegecare-181820013153.asia-southeast2.run.app/"
 
     fun getApiService(): PlantApiService {
         val client = OkHttpClient.Builder()
