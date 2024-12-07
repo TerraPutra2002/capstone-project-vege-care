@@ -59,7 +59,7 @@
 
         <!-- Points Activity -->
         <activity
-            android:name=".PointsActivity"
+            android:name=".ui.point.PointsActivity"
             android:exported="false"
             android:theme="@style/Theme.App.PopupActivity" />
 
