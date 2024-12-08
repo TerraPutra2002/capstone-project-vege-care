@@ -67,7 +67,7 @@
         <item>Selamatkan tanaman dari ancaman penyakit pada hari terakhir batas waktu.</item>
         <item>Raih semua achievement lainnya.</item>
     </string-array>
-    
+
     <!--Tambah Tanaman-->
     <string name="nama_tanaman">Nama Tanaman</string>
     <string name="jenis_tanaman">Pilih Jenis Tanaman</string>
