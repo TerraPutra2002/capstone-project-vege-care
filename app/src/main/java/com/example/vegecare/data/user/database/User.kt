@@ -1,4 +1,4 @@
-package com.example.vegecare.data.database
+package com.example.vegecare.data.user.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
