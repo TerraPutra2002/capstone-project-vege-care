@@ -1,8 +1,8 @@
-package com.example.vegecare.data
+package com.example.vegecare.data.user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.vegecare.data.repository.UserRepository
+import com.example.vegecare.data.user.repository.UserRepository
 import com.example.vegecare.ui.login.LoginViewModel
 import com.example.vegecare.ui.register.RegisterViewModel
 

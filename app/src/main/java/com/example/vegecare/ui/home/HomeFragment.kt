@@ -10,12 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vegecare.R
+import com.example.vegecare.data.plant.PlantViewModelFactory
+import com.example.vegecare.data.plant.database.Plant
+import com.example.vegecare.data.plant.database.PlantDatabase
+import com.example.vegecare.data.plant.repository.PlantRepository
 import com.example.vegecare.databinding.FragmentHomeBinding
 import com.example.vegecare.notification.Helper.DailyReminderNotificationHelper
 import com.example.vegecare.notification.Helper.WeatherNotificationHelper
 import com.example.vegecare.notification.Helper.TemperatureNotificationHelper
+import com.example.vegecare.ui.home.adapter.PlantAdapter
 import com.example.vegecare.ui.home.adapter.WeatherAdapter
 import com.example.vegecare.ui.home.data.response.CuacaItemItem
 import com.example.vegecare.ui.home.data.retrofit.ApiConfigWeather
@@ -26,11 +33,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 import com.example.vegecare.ui.home.addplant.AddPlantActivity
+import com.example.vegecare.ui.home.addplant.AddPlantViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val plantAdapter = PlantAdapter()
+    private lateinit var plantViewModel: AddPlantViewModel
 
     private var lokasi: String = ""
 
@@ -40,6 +50,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        val plantDao = PlantDatabase.getDatabase(requireContext()).plantDao()
+        val plantRepository = PlantRepository.getInstance(plantDao)
+        val factory = PlantViewModelFactory(plantRepository)
+        plantViewModel = ViewModelProvider(this, factory).get(AddPlantViewModel::class.java)
+
         return binding.root
     }
 
@@ -49,6 +65,10 @@ class HomeFragment : Fragment() {
         DailyReminderNotificationHelper.scheduleDailyReminder(requireContext())
         fetchWeatherData("35.78.22.1004")
 
+        setupRecyclerView()
+        plantViewModel.allPlants.observe(viewLifecycleOwner, { plants ->
+            setupPlantsUI(plants)
+        })
     }
 
     private fun fetchWeatherData(kodeWilayah: String) {
@@ -140,6 +160,23 @@ class HomeFragment : Fragment() {
         binding.fabAddPlant.setOnClickListener {
             val intent = Intent(requireContext(), AddPlantActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvPlants.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvPlants.adapter = plantAdapter
+    }
+
+    private fun setupPlantsUI(plants: List<Plant>) {
+
+        if (plants.isEmpty()) {
+            binding.tvEmptyPlants.visibility = View.VISIBLE
+            binding.rvPlants.visibility = View.GONE
+        } else {
+            binding.tvEmptyPlants.visibility = View.GONE
+            binding.rvPlants.visibility = View.VISIBLE
+            plantAdapter.submitList(plants)
         }
     }
 
