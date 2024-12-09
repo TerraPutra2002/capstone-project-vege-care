@@ -22,6 +22,7 @@ import com.example.vegecare.databinding.FragmentHomeBinding
 import com.example.vegecare.notification.Helper.DailyReminderNotificationHelper
 import com.example.vegecare.notification.Helper.WeatherNotificationHelper
 import com.example.vegecare.notification.Helper.TemperatureNotificationHelper
+import com.example.vegecare.ui.detail.PlantDetailActivity
 import com.example.vegecare.ui.home.adapter.PlantAdapter
 import com.example.vegecare.ui.home.adapter.WeatherAdapter
 import com.example.vegecare.ui.home.data.response.CuacaItemItem
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val plantAdapter = PlantAdapter()
+    private lateinit var plantAdapter: PlantAdapter
     private lateinit var plantViewModel: AddPlantViewModel
 
     private var lokasi: String = ""
@@ -165,7 +166,19 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.rvPlants.layoutManager = LinearLayoutManager(requireContext())
+
+        plantAdapter = PlantAdapter { plant ->
+            val intent = Intent(requireContext(), PlantDetailActivity::class.java).apply {
+                putExtra("plant_id", plant.id)
+            }
+            startActivity(intent)
+        }
+
         binding.rvPlants.adapter = plantAdapter
+
+        plantViewModel.allPlants.observe(viewLifecycleOwner) { plants ->
+            plantAdapter.submitList(plants)
+        }
     }
 
     private fun setupPlantsUI(plants: List<Plant>) {

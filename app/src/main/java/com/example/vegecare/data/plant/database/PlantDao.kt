@@ -21,4 +21,7 @@ interface PlantDao {
 
     @Query("SELECT * FROM plant_table")
     fun getAllPlants(): LiveData<List<Plant>>
+
+    @Query("SELECT * FROM plant_table WHERE id = :plantId")
+    suspend fun getPlantById(plantId: Int): Plant?
 }

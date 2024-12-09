@@ -13,6 +13,10 @@ class PlantRepository (private val plantDao: PlantDao) {
 
     fun getAllPlants() = plantDao.getAllPlants()
 
+    suspend fun getPlantById(plantId: Int): Plant? {
+        return plantDao.getPlantById(plantId)
+    }
+
     companion object {
         @Volatile
         private var instance: PlantRepository? = null

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vegecare.data.plant.database.Plant
 import com.example.vegecare.databinding.ItemPlantBinding
 
-class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
+class PlantAdapter(private val onItemClick: (Plant) -> Unit) : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
 
     private val plantList = mutableListOf<Plant>()
 
@@ -61,6 +61,9 @@ class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
             val context = itemView.context
             val compressedBitmap = getCompressedBitmap(context, drawableRes, 90, 90)
             binding.ivItem.setImageBitmap(compressedBitmap)
+            binding.root.setOnClickListener {
+                onItemClick(plant)
+            }
         }
     }
 

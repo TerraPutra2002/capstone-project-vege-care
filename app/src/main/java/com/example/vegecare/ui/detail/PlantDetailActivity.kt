@@ -5,9 +5,17 @@ import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.vegecare.R
+import com.example.vegecare.data.plant.database.Plant
+import com.example.vegecare.data.plant.database.PlantDatabase
+import com.example.vegecare.data.plant.repository.PlantRepository
 import com.example.vegecare.databinding.ActivityPlantDetailBinding
 import com.example.vegecare.ui.detect.PlantDetectionActivity
+import com.example.vegecare.ui.home.addplant.AddPlantViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class PlantDetailActivity : AppCompatActivity() {
@@ -27,6 +35,19 @@ class PlantDetailActivity : AppCompatActivity() {
         binding = ActivityPlantDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnClose.setOnClickListener {
+            finish()
+        }
+
+        val plantId = intent.getIntExtra("plant_id", -1)
+        if (plantId == -1) {
+            Toast.makeText(this, "ID tanaman tidak valid", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        fetchPlantDetails(plantId)
+
         // Initialize CheckBoxes and Buttons using ViewBinding
         initQuestCheckBoxes()
 
@@ -34,6 +55,29 @@ class PlantDetailActivity : AppCompatActivity() {
         binding.btnToDisease.setOnClickListener {
             val intent = Intent(this, PlantDetectionActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun fetchPlantDetails(plantId: Int) {
+        lifecycleScope.launch {
+            val plant = withContext(Dispatchers.IO) {
+                val plantDao = PlantDatabase.getDatabase(this@PlantDetailActivity).plantDao()
+                PlantRepository.getInstance(plantDao).getPlantById(plantId)
+            }
+
+            if (plant != null) {
+                displayPlantDetails(plant)
+            } else {
+                Toast.makeText(this@PlantDetailActivity, "Tanaman tidak ditemukan", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+    }
+
+    private fun displayPlantDetails(plant: com.example.vegecare.data.plant.database.Plant) {
+        binding.apply {
+            tvJenisTanaman.text = plant.jenis
+            tvJumlahTanaman.text = plant.jumlah.toString()
         }
     }
 

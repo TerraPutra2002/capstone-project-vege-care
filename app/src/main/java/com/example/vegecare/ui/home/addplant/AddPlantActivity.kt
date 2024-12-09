@@ -18,7 +18,6 @@ import com.example.vegecare.data.plant.database.PlantDatabase
 import com.example.vegecare.data.plant.repository.PlantRepository
 import com.example.vegecare.databinding.ActivityAddPlantBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.internal.ViewUtils.hideKeyboard
 
 class AddPlantActivity : AppCompatActivity() {
 
@@ -32,6 +31,8 @@ class AddPlantActivity : AppCompatActivity() {
 
         binding = ActivityAddPlantBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = getString(R.string.action_bar)
 
         setupDropdownMenus()
         setupJumlahTanamanListener()
