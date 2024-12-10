@@ -72,9 +72,13 @@
     <string name="nama_tanaman">Nama Tanaman</string>
     <string name="jenis_tanaman">Pilih Jenis Tanaman</string>
     <string-array name="daftar_jenis_tanaman">
-        <item>Cabai</item>
-        <item>Sawi</item>
-        <item>Tomat</item>
+        <item>Cabai (Chilli)</item>
+        <item>Kembang Kol (Cauliflower)</item>
+        <item>Selada (Lettuce)</item>
+        <item>Sawi (Mustard Greens)</item>
+        <item>Terong (Eggplant)</item>
+        <item>Timun (Cucumber)</item>
+        <item>Tomat (Tomato)</item>
     </string-array>
     <string name="media_tanam">Pilih Media Tanam</string>
     <string-array name="daftar_media_tanam">
@@ -85,5 +89,8 @@
     <string name="tambah">Tambah</string>
     <string name="batal">Cancel</string>
     <string name="action_bar">Tambah Tanaman</string>
+    <string name="empty_plants">Anda belum menambahkan tanaman apapun :(</string>
+    <string name="title_jumlah_mati">Masukkan Jumlah Tanaman yang Mati</string>
+    <string name="jumlah_mati">Jumlah tanaman mati</string>
 
 </resources>

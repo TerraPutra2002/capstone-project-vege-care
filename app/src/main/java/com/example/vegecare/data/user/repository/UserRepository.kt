@@ -1,7 +1,7 @@
-package com.example.vegecare.data.repository
+package com.example.vegecare.data.user.repository
 
-import com.example.vegecare.data.database.User
-import com.example.vegecare.data.database.UserDao
+import com.example.vegecare.data.user.database.User
+import com.example.vegecare.data.user.database.UserDao
 
 class UserRepository(private val userDao: UserDao) {
 

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vegecare.data.UserViewModelFactory
-import com.example.vegecare.data.database.AppDatabase
-import com.example.vegecare.data.repository.UserRepository
+import com.example.vegecare.data.user.UserViewModelFactory
+import com.example.vegecare.data.user.database.AppDatabase
+import com.example.vegecare.data.user.repository.UserRepository
 import com.example.vegecare.databinding.ActivityRegisterBinding
 import com.example.vegecare.ui.login.LoginActivity
 
