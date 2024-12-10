@@ -90,5 +90,7 @@
     <string name="batal">Cancel</string>
     <string name="action_bar">Tambah Tanaman</string>
     <string name="empty_plants">Anda belum menambahkan tanaman apapun :(</string>
+    <string name="title_jumlah_mati">Masukkan Jumlah Tanaman yang Mati</string>
+    <string name="jumlah_mati">Jumlah tanaman mati</string>
 
 </resources>

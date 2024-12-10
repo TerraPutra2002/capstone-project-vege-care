@@ -3,16 +3,16 @@ package com.example.vegecare.ui.detail
 import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.vegecare.R
-import com.example.vegecare.data.plant.database.Plant
 import com.example.vegecare.data.plant.database.PlantDatabase
 import com.example.vegecare.data.plant.repository.PlantRepository
 import com.example.vegecare.databinding.ActivityPlantDetailBinding
 import com.example.vegecare.ui.detect.PlantDetectionActivity
-import com.example.vegecare.ui.home.addplant.AddPlantViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -56,6 +56,8 @@ class PlantDetailActivity : AppCompatActivity() {
             val intent = Intent(this, PlantDetectionActivity::class.java)
             startActivity(intent)
         }
+
+        initReportDeadPlantFeature()
     }
 
     private fun fetchPlantDetails(plantId: Int) {
@@ -77,7 +79,7 @@ class PlantDetailActivity : AppCompatActivity() {
     private fun displayPlantDetails(plant: com.example.vegecare.data.plant.database.Plant) {
         binding.apply {
             tvJenisTanaman.text = plant.jenis
-            tvJumlahTanaman.text = plant.jumlah.toString()
+            tvJumlahTanaman.text = plant.hidup.toString()
         }
     }
 
@@ -132,6 +134,82 @@ class PlantDetailActivity : AppCompatActivity() {
             R.id.checkBox1, R.id.checkBox2 -> sharedPreferences.getBoolean("quest_harian_done", false)
             R.id.checkBox3, R.id.checkBox4 -> sharedPreferences.getBoolean("quest_bulanan_done", false)
             else -> false
+        }
+    }
+
+    private fun initReportDeadPlantFeature() {
+        binding.btnTanamanMati.setOnClickListener {
+            val tanamanHidup = binding.tvJumlahTanaman.text.toString().toIntOrNull() ?: 0
+            var tanamanMati = 0
+
+            val dialogView = layoutInflater.inflate(R.layout.dialog_input_tanaman_mati, null)
+            val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Laporkan Tanaman Mati")
+                .setView(dialogView)
+                .setPositiveButton("Submit") { _, _ ->
+                    showConfirmationDialog(tanamanHidup, tanamanMati)
+                }
+                .setNegativeButton("Batal", null)
+                .create()
+
+            val btnPlus = dialogView.findViewById<ImageButton>(R.id.btn_plus)
+            val btnMin = dialogView.findViewById<ImageButton>(R.id.btn_minus)
+            val tvInputCount = dialogView.findViewById<TextView>(R.id.tv_input_count)
+
+            btnPlus.setOnClickListener {
+                tanamanMati ++
+                tvInputCount.text = tanamanMati.toString()
+            }
+
+            btnMin.setOnClickListener {
+                if (tanamanMati > 0) {
+                    tanamanMati --
+                    tvInputCount.text = tanamanMati.toString()
+                }
+            }
+
+            dialog.show()
+        }
+    }
+
+    private fun showConfirmationDialog(tanamanHidup: Int, tanamanMati: Int) {
+        if (tanamanMati > tanamanHidup) {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Kesalahan Input")
+                .setMessage("Jumlah tanaman mati tidak boleh melebihi jumlah tanaman!")
+                .setPositiveButton("Ulangi") { _, _ -> binding.btnTanamanMati.performClick() }
+                .setNegativeButton("Batal", null)
+                .show()
+        } else {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Konfirmasi")
+                .setMessage("Anda yakin akan melaporkan $tanamanMati tanaman mati?")
+                .setPositiveButton("Ya") { _, _ ->
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        updateDeadPlantCount(tanamanMati)
+                    }
+                    Toast.makeText(this, "$tanamanMati tanaman telah dilaporkan mati", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Tidak", null)
+                .show()
+        }
+    }
+
+    private suspend fun updateDeadPlantCount(tanamanMati: Int) {
+        withContext(Dispatchers.IO) {
+            val plantId = intent.getIntExtra("plant_id", -1)
+            val plantDao = PlantDatabase.getDatabase(this@PlantDetailActivity).plantDao()
+            val repository = PlantRepository.getInstance(plantDao)
+            val plant = repository.getPlantById(plantId)
+            plant?.let {
+                val newJumlahHidup = it.hidup - tanamanMati
+                if (newJumlahHidup >= 0) {
+                    repository.updateJumlahHidup(plantId, newJumlahHidup)
+                    withContext(Dispatchers.Main){
+                        binding.tvJumlahTanaman.text = newJumlahHidup.toString()
+                    }
+                }
+            }
         }
     }
 }

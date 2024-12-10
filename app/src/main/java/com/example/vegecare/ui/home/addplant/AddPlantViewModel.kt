@@ -2,6 +2,7 @@ package com.example.vegecare.ui.home.addplant
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.vegecare.data.plant.database.Plant
 import com.example.vegecare.data.plant.repository.PlantRepository
@@ -14,6 +15,16 @@ class AddPlantViewModel(private val repository: PlantRepository) : ViewModel() {
     fun insertPlant(plant: Plant) {
         viewModelScope.launch {
             repository.insertPlant(plant)
+        }
+    }
+
+    fun getPlantById(plantId: Int): LiveData<Plant?> = liveData {
+        emit(repository.getPlantById(plantId))
+    }
+
+    fun updateJumlahHidup(plantId: Int, hidup: Int) {
+        viewModelScope.launch {
+            repository.updateJumlahHidup(plantId, hidup)
         }
     }
 }

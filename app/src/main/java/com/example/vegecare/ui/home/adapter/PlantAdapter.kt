@@ -39,6 +39,7 @@ class PlantAdapter(private val onItemClick: (Plant) -> Unit) : RecyclerView.Adap
             binding.tvNamaTanaman.text = plant.nama
             binding.tvJenisTanaman.text = plant.jenis
             binding.tvJumlahTanaman.text = "Jumlah: ${plant.jumlah}"
+            binding.tvTanamanMati.text = "Mati: ${plant.jumlah - plant.hidup}"
 
             val persentase = if (plant.jumlah>0) {
                 (plant.hidup.toDouble() / plant.jumlah * 100).toInt()

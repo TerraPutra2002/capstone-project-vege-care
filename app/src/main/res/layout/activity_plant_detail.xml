@@ -66,6 +66,14 @@
                         app:cardCornerRadius="10dp">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="Jenis Tanaman:"/>
+                        <TextView
                             android:id="@+id/tv_jenis_tanaman"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -75,6 +83,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_jumlah_tanaman"
                         android:layout_width="200dp"
                         android:layout_height="160dp"
                         android:layout_marginEnd="10dp"
@@ -103,10 +112,12 @@
             </HorizontalScrollView>
 
             <Button
+                android:id="@+id/btn_tanaman_mati"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:text="EDIT INFORMASI TANAMAN"
+                android:layout_margin="8dp"
+                android:background="@color/merah"
+                android:text="ADA TANAMAN MATI!"
                 android:textColor="#FFFFFF" />
 
             <TextView
@@ -204,7 +215,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
+                android:layout_margin="8dp"
                 android:text="DETEKSI PENYAKIT TANAMAN"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_panen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/merah"
+                android:layout_margin="8dp"
+                android:text="KETUK JIKA SUDAH PANEN"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 

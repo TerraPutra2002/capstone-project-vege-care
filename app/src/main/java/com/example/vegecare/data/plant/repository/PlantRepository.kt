@@ -17,6 +17,10 @@ class PlantRepository (private val plantDao: PlantDao) {
         return plantDao.getPlantById(plantId)
     }
 
+    suspend fun updateJumlahHidup(plantId: Int, newJumlahHidup: Int) {
+        plantDao.updateJumlahHidup(plantId, newJumlahHidup)
+    }
+
     companion object {
         @Volatile
         private var instance: PlantRepository? = null
