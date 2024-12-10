@@ -42,6 +42,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            R.id.tombol -> {
+                val intent = Intent(this, PlantDetailActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
