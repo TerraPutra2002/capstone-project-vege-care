@@ -12,13 +12,13 @@
     <!--    Isi di sini-->
 
     <!--    Menu Profile-->
-    <string name="title_achievement">Pencapaian</string>
+    <string name="title_achievement">Pencapaian (SEGERA HADIR)</string>
     <string name="uncompleted_achievement">Pencapaian Belum Terselesaikan</string>
     <string name="completed_achievement">Pencapaian Terselesaikan</string>
     <string name="num_completed">15</string>
     <string name="num_uncompleted">5</string>
-    <string name="title_username_profile">Surya Hanz</string>
-    <string name="title_username_degree">Raja Sayur</string>
+    <string name="title_username_profile">Nama Anda</string>
+    <string name="title_username_degree">Gelar Pencapaian Anda</string>
 
     <!--    Kanggo nama achievement-->
     <string-array name="achievement_names">

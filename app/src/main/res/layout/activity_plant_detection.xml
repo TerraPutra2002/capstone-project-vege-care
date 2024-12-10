@@ -14,52 +14,75 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <!-- Gambar Tanaman -->
         <ImageView
             android:id="@+id/img_photo_plant"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
+            android:padding="10dp"
             android:src="@drawable/no_photo" />
 
+        <!-- Tombol Kamera dan Galeri -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_to_camera"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:text="Kamera"
-                app:icon="@drawable/baseline_photo_camera_24" />
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/teal_700"
+                app:icon="@drawable/baseline_photo_camera_24"
+                app:iconPadding="8dp"
+                app:iconTint="@color/white" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_to_galery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:text="Galeri"
-                app:icon="@drawable/baseline_insert_photo_24" />
-
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/teal_700"
+                app:icon="@drawable/baseline_insert_photo_24"
+                app:iconPadding="8dp"
+                app:iconTint="@color/white" />
         </LinearLayout>
 
+        <!-- Tombol Upload -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_upload_photo"
-            style="@style/Widget.Material3.Button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:text="CEK PENYAKIT"
-            android:textSize="15sp" />
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:backgroundTint="@color/green_700" />
 
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.Material.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/teal_700"
+            android:visibility="gone" />
+
+        <!-- Hasil Identifikasi -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,42 +95,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:padding="5dp">
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/green_700"
+                app:strokeWidth="2dp">
 
                 <TextView
                     android:id="@+id/classs"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Nama penyakit" />
-            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Nama penyakit"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:padding="5dp">
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/green_700"
+                app:strokeWidth="2dp">
 
                 <TextView
                     android:id="@+id/information"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Informasi" />
-            </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
-
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Informasi"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
+        <!-- Saran Perawatan -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,54 +159,59 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:padding="5dp">
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="4dp"
+                    app:strokeColor="@color/green_700"
+                    app:strokeWidth="2dp">
 
                     <TextView
                         android:id="@+id/general_care"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="Perawatan umum" />
-                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                        android:padding="10dp"
+                        android:text="Perawatan umum"
+                        android:textColor="@android:color/black" />
+                </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:padding="5dp">
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="4dp"
+                    app:strokeColor="@color/green_700"
+                    app:strokeWidth="2dp">
 
                     <TextView
                         android:id="@+id/prevention"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="Pencegahan" />
-                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                        android:padding="10dp"
+                        android:text="Pencegahan"
+                        android:textColor="@android:color/black" />
+                </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:padding="5dp">
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="4dp"
+                    app:strokeColor="@color/green_700"
+                    app:strokeWidth="2dp">
 
                     <TextView
                         android:id="@+id/treatment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:text="Pengobatan" />
-                </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                        android:padding="10dp"
+                        android:text="Pengobatan"
+                        android:textColor="@android:color/black" />
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
-
         </androidx.core.widget.NestedScrollView>
-
     </LinearLayout>
-
 </ScrollView>

@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="Penawaran spesial"
+                android:text="Penawaran spesial (SEGERA HADIR)"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="Leaf point"
+                android:text="Leaf point (SEGERA HADIR)"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

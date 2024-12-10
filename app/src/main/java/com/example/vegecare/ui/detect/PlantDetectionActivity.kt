@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +37,6 @@ class PlantDetectionActivity : AppCompatActivity() {
         binding.btnToCamera.setOnClickListener { openCamera() }
         binding.btnToGalery.setOnClickListener { openGallery() }
 
-        // Upload
         binding.btnUploadPhoto.setOnClickListener {
             selectedImageFile?.let { file ->
                 uploadImage(file)
@@ -85,18 +85,16 @@ class PlantDetectionActivity : AppCompatActivity() {
             val selectedImageUri: Uri = result.data?.data as Uri
             val file = uriToFile(selectedImageUri, this)
             val bitmap = BitmapFactory.decodeFile(file.path)
-            selectedImageFile = file.reduceFileImage() // Reduksi ukuran gambar jika diperlukan
-            // Tampilkan gambar di ImageView
+            selectedImageFile = file.reduceFileImage()
             binding.imgPhotoPlant.setImageBitmap(bitmap)
         }
     }
 
     private fun uploadImage(file: File) {
-        // Buat request body untuk file gambar
+        binding.progressBar.visibility = View.VISIBLE
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
         val imageMultipart = MultipartBody.Part.createFormData("image", file.name, requestImageFile)
 
-        // Panggil API untuk mendeteksi penyakit tanaman
         val apiService = PlantApiConfig.getApiService()
         apiService.getPlantDiseasePrediction(imageMultipart)
             .enqueue(object : retrofit2.Callback<PlantDeseaseResponse> {
@@ -104,6 +102,7 @@ class PlantDetectionActivity : AppCompatActivity() {
                     call: Call<PlantDeseaseResponse>,
                     response: Response<PlantDeseaseResponse>
                 ) {
+                    binding.progressBar.visibility = View.GONE
                     if (response.isSuccessful) {
                         val result = response.body()
                         binding.classs.text =
@@ -122,6 +121,7 @@ class PlantDetectionActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<PlantDeseaseResponse>, t: Throwable) {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                         this@PlantDetectionActivity,
                         "Error: ${t.message}",
