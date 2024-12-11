@@ -16,7 +16,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private val viewModel: RegisterViewModel by viewModels {
-        UserViewModelFactory(UserRepository(AppDatabase.getDatabase(this).userDao()))
+        UserViewModelFactory(UserRepository(AppDatabase.getDatabase(this).userDao()), this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

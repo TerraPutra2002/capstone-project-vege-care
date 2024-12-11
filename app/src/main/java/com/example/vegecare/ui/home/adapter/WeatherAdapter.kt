@@ -31,9 +31,13 @@ class WeatherAdapter(
             binding.textViewForecastTime.text = "Jam: ${forecast?.localDatetime ?: "--"}"
 
             val weatherImageResId = when {
-                forecast?.weatherDesc?.contains("hujan", ignoreCase = true) == true -> R.drawable.rain
-                forecast?.weatherDesc?.contains("berawan", ignoreCase = true) == true -> R.drawable.cloudy
-                forecast?.weatherDesc?.contains("cerah", ignoreCase = true) == true -> R.drawable.sun
+                forecast?.weatherDesc?.contains("cerah berawan", ignoreCase = true) == true -> R.drawable.cerah_berawan
+                forecast?.weatherDesc?.contains("hujan ringan", ignoreCase = true) == true -> R.drawable.hujan_ringan
+                forecast?.weatherDesc?.contains("berawan", ignoreCase = true) == true -> R.drawable.berawan
+                forecast?.weatherDesc?.contains("cerah", ignoreCase = true) == true -> R.drawable.cerah
+                forecast?.weatherDesc?.contains("hujan lebat", ignoreCase = true) == true -> R.drawable.hujan_lebat
+                forecast?.weatherDesc?.contains("petir", ignoreCase = true) == true -> R.drawable.badai_petir
+                forecast?.weatherDesc?.contains("hujan", ignoreCase = true) == true -> R.drawable.hujan
                 else -> R.drawable.weather_image
             }
 

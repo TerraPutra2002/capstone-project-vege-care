@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private val viewModel: LoginViewModel by viewModels {
-        UserViewModelFactory(UserRepository(AppDatabase.getDatabase(this).userDao()))
+        UserViewModelFactory(UserRepository(AppDatabase.getDatabase(this).userDao()), this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,11 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
-            viewModel.login(email, password)
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                viewModel.login(email, password)
+            } else {
+                Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.registerButton.setOnClickListener {

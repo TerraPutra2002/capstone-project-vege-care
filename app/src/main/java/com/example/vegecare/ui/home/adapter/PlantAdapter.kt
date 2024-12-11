@@ -49,13 +49,13 @@ class PlantAdapter(private val onItemClick: (Plant) -> Unit) : RecyclerView.Adap
             binding.tvPersentaseHidup.text = "Persentase: $persentase%"
 
             val drawableRes = when (plant.jenis) {
-                "Cabai (Chilli)" -> R.drawable.cabai
-                "Kembang Kol (Cauliflower)" -> R.drawable.kol
-                "Selada (Lettuce)" -> R.drawable.selada
-                "Sawi (Mustard Greens)" -> R.drawable.sawi
-                "Terong (Eggplant)" -> R.drawable.terong
-                "Timun (Cucumber)" -> R.drawable.timun
-                "Tomat (Tomato)" -> R.drawable.tomat
+                "Cabai (Chilli)" -> R.drawable.cabai_v2
+                "Kembang Kol (Cauliflower)" -> R.drawable.kembang_kol_v2
+                "Selada (Lettuce)" -> R.drawable.selada_v2
+                "Sawi (Mustard Greens)" -> R.drawable.sawi_v2
+                "Terong (Eggplant)" -> R.drawable.terong_v2
+                "Timun (Cucumber)" -> R.drawable.timun_v2
+                "Tomat (Tomato)" -> R.drawable.tomat_v2
                 else -> R.drawable.daun
             }
 
