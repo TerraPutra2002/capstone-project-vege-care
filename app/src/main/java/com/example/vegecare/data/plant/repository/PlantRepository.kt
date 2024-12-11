@@ -21,6 +21,10 @@ class PlantRepository (private val plantDao: PlantDao) {
         plantDao.updateJumlahHidup(plantId, newJumlahHidup)
     }
 
+    suspend fun deletePlantById(plantId: Int) {
+        plantDao.deletePlantById(plantId)
+    }
+
     companion object {
         @Volatile
         private var instance: PlantRepository? = null
