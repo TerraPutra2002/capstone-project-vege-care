@@ -94,14 +94,14 @@ class HomeFragment : Fragment() {
 
                         // Tampilkan notifikasi untuk Hujan Petir
                         val hujanPetirItems =
-                            weatherItems.filter { it?.weatherDesc == "Hujan Petir" }
+                            weatherItems.filter { it?.weatherDesc == "Hujan Lebat" }
                         hujanPetirItems.forEach { forecast ->
                             val waktu = forecast?.localDatetime ?: "Waktu tidak diketahui"
                             val cuaca = forecast?.weatherDesc ?: "Cuaca belum terprediksi"
                             WeatherNotificationHelper.createNotification(
                                 requireContext(),
-                                "Peringatan Cuaca Eksrem",
-                                "$cuaca diprediksi pada $waktu, segera berikan tindakan pada tanaman Anda"
+                                "Peringatan Cuaca Ekstrem",
+                                "$cuaca diprediksi pada $waktu, pastikan sirkulasi air bagus sehingga tanaman anda tidak tergenang, jika sebelum hujan terasa angin sangat kencang silakan beri perlindungan ataupun penahan agar tanaman anda tidak ambruk."
                             )
                         }
 
@@ -116,7 +116,7 @@ class HomeFragment : Fragment() {
                             TemperatureNotificationHelper.createTemperatureNotification(
                                 requireContext(),
                                 "Peringatan Suhu Tinggi",
-                                "Diperkirakan suhu mencapai $suhu°C pada $waktu, segera berikan tindakan pada tanaman Anda"
+                                "Diperkirakan suhu mencapai $suhu°C pada $waktu, sirami tanaman anda jika terlihat layu, pindahkan jika berada di pot atau beri perlindungan jika berada di lahan."
                             )
                         }
 

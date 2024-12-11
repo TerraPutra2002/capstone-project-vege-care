@@ -34,7 +34,7 @@ class NotificationsFragment : Fragment() {
     private fun showDeleteConfirmation(notification: NotificationItem) {
         AlertDialog.Builder(requireContext())
             .setTitle("Selesaikan Aksi")
-            .setMessage("Apakah Anda telah melakukan tindakan pada pengingat ini?")
+            .setMessage("Hebat! Apakah Anda sudah melakukan perawatan sesuai pengingat ini? Jika sudah, mari kita tandai sebagai selesai :D")
             .setPositiveButton("Ya") { _, _ ->
                 adapter.removeItem(requireContext(), notification)
             }
