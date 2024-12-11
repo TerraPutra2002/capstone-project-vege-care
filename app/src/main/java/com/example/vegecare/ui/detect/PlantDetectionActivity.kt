@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.vegecare.BuildConfig
+import com.example.vegecare.R
 import com.example.vegecare.databinding.ActivityPlantDetectionBinding
 import com.example.vegecare.ui.detect.data.response.PlantDeseaseResponse
 import com.example.vegecare.ui.detect.data.retrofit.PlantApiConfig
@@ -36,11 +37,16 @@ class PlantDetectionActivity : AppCompatActivity() {
 
         binding.btnToCamera.setOnClickListener { openCamera() }
         binding.btnToGalery.setOnClickListener { openGallery() }
+        supportActionBar?.title = getString(R.string.action_bar_deteksi)
 
         binding.btnUploadPhoto.setOnClickListener {
             selectedImageFile?.let { file ->
                 uploadImage(file)
             } ?: Toast.makeText(this, "Pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnKembali.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 

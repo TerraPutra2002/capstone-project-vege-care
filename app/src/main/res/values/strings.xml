@@ -95,5 +95,6 @@
     <string name="hapus_tanaman">HAPUS TANAMAN</string>
     <string name="leaf_points">Leaf Points</string>
     <string name="coming_soon">(SEGERA HADIR...)</string>
+    <string name="action_bar_deteksi">Deteksi Tanaman</string>
 
 </resources>

@@ -83,7 +83,7 @@
         android:src="@drawable/gardening"
         app:backgroundTint="@color/hizbul_waton"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Fab.Square"
         app:tint="@null" />
 

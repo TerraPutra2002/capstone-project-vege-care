@@ -153,7 +153,7 @@ class PlantDetailActivity : AppCompatActivity() {
                     // Save the completion status in SharedPreferences
                     markQuestAsCompleted(checkBox)
                     // Show Toast for quest completion
-                    Toast.makeText(this, "Anda telah menyelesaikan quest ini dan mendapat 15 leaf point", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Anda telah menyelesaikan quest ini, hebat! :D", Toast.LENGTH_SHORT).show()
                 } else {
                     // Prevent unchecking if quest is already completed
                     if (isQuestCompleted(checkBox)) {
