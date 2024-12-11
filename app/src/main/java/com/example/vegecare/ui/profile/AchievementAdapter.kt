@@ -13,15 +13,10 @@ class AchievementAdapter(
     inner class AchievementViewHolder(private val binding: ItemAchievementBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(achievement: Achievement, position: Int) {
-            binding.tvItemName.text = achievement.title
-            binding.tvItemDescription.text = achievement.description
+            binding.tvItemName.text = "Segera hadir..."
+            binding.tvItemDescription.text = "Segera hadir..."
 
-            val iconRes = when {
-                position % 15 == 0 -> R.drawable.achievement_uncompleted
-                position % 5 == 0 -> R.drawable.achievement_completed
-                else -> R.drawable.achievement_completed
-            }
-            binding.itemIcon.setImageResource(iconRes)
+            binding.itemIcon.setImageResource(R.drawable.achievement_uncompleted)
         }
     }
 

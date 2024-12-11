@@ -2,6 +2,7 @@ package com.example.vegecare.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
@@ -81,6 +82,62 @@ class PlantDetailActivity : AppCompatActivity() {
             tvJenisTanaman.text = plant.jenis
             tvJumlahTanaman.text = plant.hidup.toString()
         }
+
+        if (plant.hidup == 0) {
+            binding.btnHapusTanaman.visibility = View.VISIBLE
+            binding.btnPanen.visibility = View.GONE
+        } else {
+            binding.btnHapusTanaman.visibility = View.GONE
+            binding.btnPanen.visibility = View.VISIBLE
+        }
+
+        binding.btnHapusTanaman.setOnClickListener {
+            val plantId = intent.getIntExtra("plant_id", -1)
+            lifecycleScope.launch {
+                withContext(Dispatchers.IO) {
+                    val plantDao = PlantDatabase.getDatabase(this@PlantDetailActivity).plantDao()
+                    plantDao.deletePlantById(plantId)
+                }
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@PlantDetailActivity,
+                        "Tanaman berhasil dihapus!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                }
+            }
+        }
+
+        binding.btnPanen.setOnClickListener {
+            if (isTanamanSekaliTanam(plant.jenis)) {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val plantDao = PlantDatabase.getDatabase(this@PlantDetailActivity).plantDao()
+                    plantDao.deletePlantById(plant.id)
+
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@PlantDetailActivity,
+                            "Panen berhasil! Karena tanaman sudah kamu panen, maka kami akan menghapusnya, sampai jumpa!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        finish()
+                    }
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Panen berhasil! Tanaman masih tersedia untuk panen berikutnya.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun isTanamanSekaliTanam(jenis: String): Boolean {
+        val tanamanSekaliTanam = listOf("Kembang Kol (Cauliflower)", "Selada (Lettuce)", "Sawi (Mustard Greens)")
+        return jenis in tanamanSekaliTanam
     }
 
     private fun initQuestCheckBoxes() {
@@ -207,6 +264,18 @@ class PlantDetailActivity : AppCompatActivity() {
                     repository.updateJumlahHidup(plantId, newJumlahHidup)
                     withContext(Dispatchers.Main){
                         binding.tvJumlahTanaman.text = newJumlahHidup.toString()
+
+                        if (newJumlahHidup == 0) {
+                            binding.btnHapusTanaman.visibility = View.VISIBLE
+                            binding.btnPanen.visibility = View.GONE
+                        } else {
+                            binding.btnHapusTanaman.visibility = View.GONE
+                            binding.btnPanen.visibility = View.VISIBLE
+                        }
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@PlantDetailActivity, "Jumlah tanaman mati melebihi jumlah tanaman hidup!", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
